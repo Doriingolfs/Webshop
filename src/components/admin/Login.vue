@@ -3,7 +3,7 @@
 
         <v-row>
             <v-col offset-md="3" md="6" xs="12">
-                <h1 class="yeet">Admin login</h1>
+                <h1 class="admin">Admin login</h1>
                 <div id="info">
                     <v-text-field
                     v-model="email"
@@ -12,22 +12,22 @@
                     >
 
                     </v-text-field>
-                         <v-text-field
-                    v-model="password"
-                    label="password"
-                    required
+                    <v-text-field
+                        v-model="password"
+                        label="password"
+                        required
                     >
 
                     </v-text-field>
                     <v-btn
-                    color="#415764"
-                    @click.prevent="signIn()"
+                        color="#3eb650"
+                        @click.prevent="signIn()"
                     >
                         Login
                     </v-btn>
-                     <v-btn
-                    color="#3b302f"
-                    @click.prevent="signOut()"
+                    <v-btn
+                        color="#e12b38"
+                        @click.prevent="signOut()"
                     >
                         SignOut
                     </v-btn>
@@ -80,12 +80,12 @@ import 'firebase/firestore'
 <style lang="scss" scoped>
 #info {
     padding: 20px;
-    background-color: #171717;
+    background-color: white;
 
 
 }
-.yeet {
-    border: 3px solid #171717;
-    color: #bebebe;
+.admin {
+    border: 3px solid white;
+    color: white;
 }
 </style>

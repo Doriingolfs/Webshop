@@ -1,69 +1,65 @@
 <template>
-  <v-container>
-    
+  <v-layout row wrap>
     <v-row>
-      <v-col class="xs-12" wrap>
-        <v-carousel>
-          <v-carousel-item 
-          v-for="kebab in kebabs"
-          :src="kebab.imageUrl"
-          :key="kebab.id"
-          >
+      <v-col sm12 xs12 offset-sm2>
           <div class="title">
-            {{ kebab.title }}
+              Go to Gallery to see our Artpiece
           </div>
-          <div class="text-center" id="bottom">
-          <v-btn color="#415764" to="/menu">
-            See menu
-          </v-btn>
-        </div>
-       
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="xs-12">
+        <v-carousel hide-delimiters id="carousel" class="cara">
+          <v-carousel-item extends v-img
+          v-for="(item,i) in items"
+          :key="i"
+          :src="item.src"
+          >
           </v-carousel-item>
         </v-carousel>
       </v-col>
     </v-row>
-  </v-container>
+    <v-row> 
+      <v-col>
+        <div id="button">
+          <router-link tag="btn" to="/menu" id="textColor"> 
+            <v-btn>
+              <v-icon color="#6f828a">images</v-icon>
+              Gallery
+            </v-btn>
+          </router-link>
+        </div>
+      </v-col>
+    </v-row>  
+  </v-layout>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  data () {
-    return {
-      kebabs: [
-      { imageUrl: 'https://c.tfstatic.com/w_656,h_368,c_fill,g_auto:subject,q_auto,f_auto/restaurant_photos/489/543489/source/turkish-doner-kebab-kebab-9ba1e.jpg', id: '1', title: 'yeet'},
-      { imageUrl: 'https://prod-wolt-venue-images-cdn.wolt.com/5dfa30a6c61a194bfdd4cec9/785da302-35fe-11ea-b1c3-0a5864709e55_NewsKebab_menu-3970.jpg', id: '1', title: 'yeet'},
-      { imageUrl: 'https://dk-spisbedre-production.imgix.net/images/recipes/kebab-i-pitabrod-med-gront-og-dressing_659.jpg?fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.3934326171875&fp-z=1&w=1200&h=628', id: '1', title: 'yeet'},
-      ]
-    }
+    data () {
+      return {
+        items: [
+          {
+            src: 'https://firebasestorage.googleapis.com/v0/b/webshop-d22d1.appspot.com/o/Products%2Fchanged4.png?alt=media&token=ec7fa492-cd68-486c-ab8d-445500fed88a',
+          },
+          {
+            src: 'https://firebasestorage.googleapis.com/v0/b/webshop-d22d1.appspot.com/o/Products%2FEsbjerg.png?alt=media&token=e33e50d5-33f3-4596-8783-42f50889f67f',
+          },
+          {
+            src: 'https://firebasestorage.googleapis.com/v0/b/webshop-d22d1.appspot.com/o/Products%2Fchanged1.png?alt=media&token=31a59267-ca48-45e5-b050-a723f9c40af6',
+          },
+          {
+            src: 'https://firebasestorage.googleapis.com/v0/b/webshop-d22d1.appspot.com/o/Products%2Fchanged3.png?alt=media&token=95ad2e63-5f01-4a04-8064-01fca1b13371',
+          },
+        ],
+      }
+    },
   }
-}
 </script>
-
-
 <style lang="scss">
-   .info_box .flex h1{
-    border: 5px solid #ffffff;
-    padding: 5px;
-    margin-bottom: 5px;
-    color: #ffffff;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 16px;
-    text-align: center;
-  }
-  .info_box .flex div {
-    background-color: white;
-    padding: 20px;
-  }
-
-  .layout:first-child {
-    height: 40vh;
-  }
-  .layout:last-child {
-    height: 40vh;
+  .cara, .cara .v-window__container, .cara .v-carousel__item { 
+    height: 100vh !important;
+    max-width: 100vw !important;
   }
 
   .title {
@@ -71,25 +67,15 @@ export default {
     justify-content: center;
     align-items: center;
     bottom: 50px;
-    background-color: #55575850;
     color: white;
     font-size: 2em;
     padding: 20px;
-
+    font-style: bold;
   }
-
-  .button {
-
-    bottom: 50px;
-    background-color: #55575850;
-    color: white;
-    font-size: 2em;
-    padding: 20px;
+  #button {
+    right: 47%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    margin: 5px;
   }
-
-  #bottom {
-    position: relative;
-  padding-bottom: 50px;
-  }
-
 </style>

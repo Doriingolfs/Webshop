@@ -21,20 +21,21 @@
 
         <v-row>
             <v-col offset-md="1" md="5">
-                <h1>Current bagels in menu items</h1>
+                <h1>Current Art in the Gallery</h1>
                 <div class="pa-2" id="info">
                     <v-simple-table id="menu-table">
                         <template v-slot:default>
                           <thead>
                             <tr>
-                              <th class="text-left" style="width: 70%"> 
+                              <th class="text-left" style="width: 60%"> 
                                 <v-btn color="orange" small text to="/addNew">
                                   <v-icon>add</v-icon> <span style="padding: 0 10px">Add item</span>
                                 </v-btn>
                               </th>
-                              <th class="text-left" stlye="width: 70%">Price</th>
-                              <th class="text-left" style="width: 100px;">Edit</th>
-                              <th class="text-left" style="width: 100px;">Remove</th>
+                              <th class="text-left" stlye="width: 10%">Art</th>
+                              <th class="text-left" stlye="width: 10%">Price</th>
+                              <th class="text-left" style="width: 10%;">Edit</th>
+                              <th class="text-left" style="width: 10%;">Remove</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -42,6 +43,9 @@
                               <td>
                                 <span id="td_name"> {{ item.name }} </span> <br> 
                                 <span id="menu_item_description"> {{ item.description }} </span> 
+                              </td>
+                              <td id="td_menuitem_img">
+                                <v-img v-bind:src="item.image"></v-img>
                               </td>
                               <td>{{ item.price }}</td>
                               <td>
@@ -53,7 +57,7 @@
                               </td>
                               <td>
                                 <v-btn small text @click="deleteItem(item.id)">
-                                    <v-icon color="incomplete">
+                                    <v-icon color="#e12b38">
                                         delete
                                     </v-icon>
                                 </v-btn>
@@ -64,55 +68,6 @@
                       </v-simple-table>
                 </div>
             </v-col>
-            <v-col offset-md="1" md="4">
-                <h1>Current Basket</h1>
-                <div class="pa-2" id="info">
-                    <v-simple-table id="menu-table" v-if="basket.length > 0">
-                        <template v-slot:default>
-                          <thead>
-                            <tr>
-                              <th class="text-left" stlye="width: 30%">Quantity</th>
-                              <th class="text-left" style="width: 50%;">Name of an item</th>
-                              <th class="text-left" style="width: 20%;">Price</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr v-for="item in basket" :key="item.name">
-                              <td>
-                                <v-icon color="orange" @click="increaseQtn(item)">add_box</v-icon>
-                                    {{item.quantity}}
-                                <v-icon color="orange" @click="decreaseQtn(item)">indeterminate_check_box</v-icon>
-                              </td>
-                              <td>{{ item.name }}</td>
-                              <td>{{ item.price }}</td>
-                            </tr>
-                          </tbody>
-                        </template>
-                      </v-simple-table>
-
-                      <v-simple-table v-else>
-                          <p>The basket is empty</p>
-                      </v-simple-table>
-
-                      <v-divider></v-divider>
-                      <v-row id="basket_checkout" class="mt-4" style=" margin:0;">
-                          <v-col>
-                            <p>Subtotal:</p>
-                            <p>Delivery:</p>
-                            <p>Total amount:</p>
-                          </v-col>
-                          <v-col class="text-right">
-                              <p> {{ subTotal }} DKK</p>
-                              <p>10 DKK</p>
-                              <p><b> {{total}}  DKK</b></p>
-                          </v-col>
-                      </v-row>
-                      <v-row style="margin:0;">
-                        <v-spacer></v-spacer>
-                        <v-btn color="orange">Chekcout</v-btn>
-                      </v-row>
-                </div>
-            </v-col>
         </v-row>
         <v-row>
           <v-dialog
@@ -120,8 +75,6 @@
       max-width="400"
     >
       <v-card>
-       
-
         <h1>Edit item</h1>
                 <div class="pa-5" id="info">
                     <v-text-field  v-model="item.name"></v-text-field>
@@ -141,15 +94,10 @@
                       Close
                     </v-btn>
                 </div>
-
-
-
       </v-card>
     </v-dialog>
         </v-row>
-        <v-footer app>
-          <span>&copy; 2020</span>
-        </v-footer>
+      
     </v-container>
     
 </template>
@@ -166,7 +114,7 @@ import { dbMenuAdd } from '@/firebase';
         item: [],
         activeEditItem: null,
         updatedSuccess: false,
-        updatedText: 'Menu Item has been updation'
+        updatedText: 'Art information has been updated'
       }
     },
     beforeCreate() {
@@ -179,21 +127,14 @@ import { dbMenuAdd } from '@/firebase';
         this.activeEditItem = item.id
       },
       updateItem() {
-
-
-       dbMenuAdd.doc(this.activeEditIte).update(this.item)
+       dbMenuAdd.doc(this.activeEditItem).update(this.item)
         .then(() => {
             this.updatedSuccess = true;
             console.log("Document successfully updated!");
         })
         .catch(function(error) {
-            // The document probably doesn't exist.
             console.error("Error updating document: ", error);
         });
-
-
-
-
       },
       deleteItem(id) {
         dbMenuAdd.doc(id).delete().then(function() {
@@ -249,10 +190,10 @@ import { dbMenuAdd } from '@/firebase';
 
 <style scoped>
 .col h1{
-    border: 5px solid #1e272c;
+    border: 5px solid white;
     padding: 5px;
     margin-bottom: 5px;
-    color: #ffffff;
+    color: white;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
@@ -262,7 +203,7 @@ import { dbMenuAdd } from '@/firebase';
     text-align: left;
   }
     #info {
-        background-color: #1e272c;
+        background-color: white;
     }
 
     tr th {

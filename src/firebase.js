@@ -5,14 +5,14 @@ import 'firebase/storage'
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyCs971xINRB9CpeO57H2L_rVO7OVAu9W9Y",
-    authDomain: "webshop-11eea.firebaseapp.com",
-    databaseURL: "https://webshop-11eea.firebaseio.com",
-    projectId: "webshop-11eea",
-    storageBucket: "webshop-11eea.appspot.com",
-    messagingSenderId: "99265745913",
-    appId: "1:99265745913:web:67a8b98eb49cdfab89e328",
-    measurementId: "G-CKNSW4BKWG"
+      apiKey: "AIzaSyB3qIj01X6MkEI-OneRAjvfxVm_3mFaLdo",
+      authDomain: "webshop-d22d1.firebaseapp.com",
+      databaseURL: "https://webshop-d22d1.firebaseio.com",
+      projectId: "webshop-d22d1",
+      storageBucket: "webshop-d22d1.appspot.com",
+      messagingSenderId: "771106210934",
+      appId: "1:771106210934:web:2d03203f07bbea7f45cb57",
+      measurementId: "G-YQ9ECB8H06"
   };
   
   export const fb = firebase.initializeApp(firebaseConfig);

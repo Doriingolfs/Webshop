@@ -5,6 +5,7 @@ import Menu from '../views/Menu.vue'
 import Admin from '../views/admin.vue'
 import Orders from '../views/Orders.vue'
 import AddNewItems from '../components/admin/AddNewItems.vue'
+import Cart from '../views/Cart.vue'
 import Login from '../components/admin/Login.vue'
 import firebase from 'firebase'
 import 'firebase/firestore'
@@ -50,6 +51,11 @@ const routes = [
     path: '/addNew',
     name: 'addNew',
     component: AddNewItems,
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: Cart,
     meta: {
       requiresAuth: true
     }
